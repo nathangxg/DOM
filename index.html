@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Trabalho 3 DOM</title>
+</head>
+<body>
+	<div class="controls">
+		<input type="range" min="0" max="255" value="0" onchange="document.getElementById('redValEl').value = this.value;convert();">
+		(R) Red - Vermelho: <input id="redValEl" type="text" value="0" style="width: 30px;"><br><br>
+		<input type="range" min="0" max="255" value="0" onchange="document.getElementById('greenValEl').value = this.value;convert();">
+		(G) Green - Verde: <input id="greenValEl" type="text" value="0" style="width: 30px;"><br><br>
+		<input type="range" min="0" max="255" value="0" onchange="document.getElementById('blueValEl').value = this.value;convert();">
+		(B) Blue - Azul: <input id="blueValEl" type="text" value="0" style="width: 30px;"><br><br>
+
+		<input id="hexaValue" type="text" value="#000000">
+	</div>
+
+	<div id="rgb" style="width: 200px; height: 200px;"></div>
+
+	<script type="text/javascript">
+		
+		var redValEl = document.getElementById('redValEl');
+		var greenValEl = document.getElementById('greenValEl');
+		var blueValEl = document.getElementById('blueValEl');
+		var hexaValue = document.getElementById('hexaValue');
+
+		var rgb = document.getElementById('rgb');
+		var hex = document.getElementById('hex');
+
+		function convert() {
+			var red = redValEl.value;
+			var green = greenValEl.value;
+			var blue = blueValEl.value;
+
+			var hexaColorCode = "#" + getHexa(red) + getHexa(green) + getHexa(blue);
+			hexaValue.value = hexaColorCode;
+
+			rgb.style.background = `rgb(${red}, ${green}, ${blue})`;
+			hex.style.background = hexaColorCode;
+		};
+
+		function getHexa(value) {
+			var hexa = parseInt(value).toString(16);
+			return hexa.length == 1 ? "0" + hexa : hexa;
+		}
+	</script>
+</body>
+</html>
